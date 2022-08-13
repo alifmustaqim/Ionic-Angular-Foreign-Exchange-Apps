@@ -1,0 +1,7 @@
+{
+  "name": "foreign_exchange",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
