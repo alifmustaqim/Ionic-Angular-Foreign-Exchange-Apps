@@ -4,7 +4,6 @@
             <ion-title>FOREIGN EXCHANGE RATES</ion-title>
         </ion-toolbar>
     </ion-header>
-
     <div id="slcContainer">
         <ion-row>
             <ion-col size="12" size-md>
@@ -20,6 +19,7 @@
                 </div>
             </ion-col>
         </ion-row>
+        <ion-button expand="block" (click)="getRates()">Convert</ion-button>
         <ion-modal [isOpen]="isOpen" (didDismiss)="isOpen=false">
             <ng-template>
                 <ion-header>
@@ -30,7 +30,7 @@
                         </ion-buttons>
                     </ion-toolbar>
                 </ion-header>
-                <ion-content>
+                <ion-content class="ion-padding">
                     <ion-list>
                         <ion-radio-group (ionChange)="selectedCur($event)" value="USD">
                             <ion-list-header>
@@ -47,5 +47,19 @@
                 </ion-content>
             </ng-template>
         </ion-modal>
+        <div>
+            <ion-card *ngFor="let d of convData">
+                <div class="listRates">
+                    <div class="ratesDetails">
+                        <ion-card-subtitle>
+                            {{d.name}} - {{d.desc}}
+                        </ion-card-subtitle>
+                        <ion-card-subtitle style="color:green;">
+                            {{d.value}}
+                        </ion-card-subtitle>
+                    </div>
+                </div>
+            </ion-card>
+        </div>
     </div>
 </ion-content>
