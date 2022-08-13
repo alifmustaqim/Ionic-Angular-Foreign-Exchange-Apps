@@ -30,14 +30,15 @@
                         </ion-buttons>
                     </ion-toolbar>
                 </ion-header>
-                <ion-content class="ion-padding">
+                <ion-content>
+                    <ion-searchbar placeholder=" Filter currency" [(ngModel)]="filterCur"></ion-searchbar>
                     <ion-list>
                         <ion-radio-group (ionChange)="selectedCur($event)" value="USD">
                             <ion-list-header>
                                 <ion-label>Name</ion-label>
                             </ion-list-header>
 
-                            <ion-item *ngFor="let i of symbols">
+                            <ion-item *ngFor="let i of symbols | filter : filterCur">
                                 <ion-label>{{i.code}} - {{i.desc}}</ion-label>
                                 <ion-radio slot="start" value="{{i.code}}|{{i.desc}}"></ion-radio>
                             </ion-item>
@@ -47,8 +48,11 @@
                 </ion-content>
             </ng-template>
         </ion-modal>
+        <div *ngIf="convData.length > 0">
+            <ion-searchbar placeholder="Filter Currency" [(ngModel)]="crcTerm"></ion-searchbar>
+        </div>
         <div>
-            <ion-card *ngFor="let d of convData">
+            <ion-card *ngFor="let d of convData | filter : crcTerm">
                 <div class="listRates">
                     <div class="ratesDetails">
                         <ion-card-subtitle>
